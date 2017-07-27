@@ -7,7 +7,7 @@
 def -hidden -params 1.. i3-new-impl %{
     nop %sh{
         if [ -z "${kak_opt_termcmd}" ]; then
-           echo "echo -color Error 'termcmd option is not set'"
+           echo "echo -markup '{Error}termcmd option is not set'"
            exit
         fi
         i3_args="$1"
