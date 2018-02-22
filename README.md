@@ -10,6 +10,7 @@ It depends on `x11.kak`.
 ## Usage
 
 Run the `i3-new-horizontal` or `i3-new-vertical` commands.
+Commands ending with `*-clone` will open new clients on the same buffer, same line.
 
 ## Licence
 
