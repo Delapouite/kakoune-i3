@@ -4,37 +4,50 @@
 # see also: tmux.kak
 
 ## Temporarily override the default client creation command
-def -hidden -params 1.. i3-new-impl %{
-    nop %sh{
-        if [ -z "${kak_opt_termcmd}" ]; then
-           echo "echo -markup '{Error}termcmd option is not set'"
-           exit
-        fi
-        i3_args="$1"
-        shift
-        if [ $# -ne 0 ]; then kakoune_params="-e '$@'"; fi
-        i3-msg $i3_args; exec $kak_opt_termcmd "kak -c ${kak_session} ${kakoune_params}" < /dev/null > /dev/null 2>&1 &
-    }
+define-command -hidden -params 1.. i3-new-impl %{
+  %sh{
+    if [ -z "$kak_opt_termcmd" ]; then
+      echo "echo -markup '{Error}termcmd option is not set'"
+      exit
+    fi
+    i3_split="$1"
+    shift
+    # clone (same buffer, same line)
+    kakoune_args="-e 'execute-keys $@ :buffer <space> %val{buffile} <ret> %val{cursor_line} g'"
+    {
+      # https://github.com/i3/i3/issues/1767
+      i3-msg "split $i3_split"
+      exec $kak_opt_termcmd "kak -c $kak_session $kakoune_args"
+    } < /dev/null > /dev/null 2>&1 &
+  }
 }
 
-def i3-new-vertical -params .. -command-completion -docstring "Create a new vertical window" %{
-    i3-new-impl 'split v' %arg{@}
+define-command i3-new-down -docstring "Create a new window below" %{
+  i3-new-impl v 
 }
 
-def i3-new-horizontal -params .. -command-completion -docstring "Create a new horizontal window" %{
-    i3-new-impl 'split h' %arg{@}
+define-command i3-new-up -docstring "Create a new window below" %{
+  i3-new-impl v :nop <space> '%sh{ i3-msg move up }' <ret>
 }
 
-def i3-new-vertical-clone -params .. -command-completion -docstring "Create a new vertical window (same buffer, same line)" %{
-    i3-new-impl 'split v' exec :buffer <space> %val{buffile} <ret> %val{cursor_line} g
+define-command i3-new-right -docstring "Create a new window on the right" %{
+  i3-new-impl h
 }
 
-def i3-new-horizontal-clone -params .. -command-completion -docstring "Create a new horizontal window (same buffer, same line)" %{
-    i3-new-impl 'split h' exec :buffer <space> %val{buffile} <ret> %val{cursor_line} g
+define-command i3-new-left -docstring "Create a new window on the left" %{
+  i3-new-impl h :nop <space> '%sh{ i3-msg move left }' <ret>
 }
 
-alias global new i3-new-horizontal
-alias global newh i3-new-horizontal
-alias global newv i3-new-vertical
-alias global newhc i3-new-horizontal-clone
-alias global newvc i3-new-vertical-clone
+# Suggested aliases
+
+alias global new i3-new-right
+
+declare-user-mode i3
+map global i3 h :i3-new-left<ret> -docstring '← new window on the left'
+map global i3 l :i3-new-right<ret> -docstring '→ new window on the right'
+map global i3 k :i3-new-up<ret> -docstring '↑ new window above'
+map global i3 j :i3-new-down<ret> -docstring '↓ new window below'
+
+# Suggested mappings
+
+#map global user 3 ':enter-user-mode i3<ret>' -docstring 'i3…'
