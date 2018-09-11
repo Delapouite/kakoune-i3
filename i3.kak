@@ -5,7 +5,7 @@
 
 ## Temporarily override the default client creation command
 define-command -hidden -params 1.. i3-new-impl %{
-  %sh{
+  evaluate-commands %sh{
     if [ -z "$kak_opt_termcmd" ]; then
       echo "echo -markup '{Error}termcmd option is not set'"
       exit
