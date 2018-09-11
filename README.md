@@ -28,6 +28,10 @@ map global user 3 ':enter-user-mode i3<ret>' -docstring 'i3…'
 
 i.e. `<space>3k` will open a new window above the current one.
 
+## Screenshots
+
+![kakoune-i3](https://raw.githubusercontent.com/delapouite/kakoune-i3/master/screenshot.png)
+
 ## See also
 
 - [rc/extra/i3.kak](https://github.com/mawww/kakoune/blob/master/rc/extra/i3.kak) - config highlighters
