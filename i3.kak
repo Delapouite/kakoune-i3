@@ -48,6 +48,6 @@ map global i3 l :i3-new-right<ret> -docstring '→ new window on the right'
 map global i3 k :i3-new-up<ret> -docstring '↑ new window above'
 map global i3 j :i3-new-down<ret> -docstring '↓ new window below'
 
-# Suggested mappings
+# Suggested mapping
 
-#map global user 3 ':enter-user-mode i3<ret>' -docstring 'i3…'
+#map global user 3 ': enter-user-mode i3<ret>' -docstring 'i3…'

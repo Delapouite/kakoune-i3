@@ -7,6 +7,15 @@
 Add `i3.kak` to your autoload dir: `~/.config/kak/autoload/`.
 It depends on `x11.kak`.
 
+Or via [plug.kak](https://github.com/andreyorst/plug.kak):
+
+```
+plug 'delapouite/kakoune-i3' %{
+  # Suggested mapping
+  map global user 3 ': enter-user-mode i3<ret>' -docstring 'i3…'
+}
+```
+
 ## Usage
 
 4 commands available:
@@ -18,15 +27,9 @@ It depends on `x11.kak`.
 
 New windows display a *cloned view*: same buffer, same line.
 
-A `i3` user-mode is also declared:
+A `i3` user-mode is also declared. With the mapping in the Install section above:
 
-```
-# Suggested mappings
-
-map global user 3 ':enter-user-mode i3<ret>' -docstring 'i3…'
-```
-
-i.e. `<space>3k` will open a new window above the current one.
+`<space>3k` will open a new window above the current one.
 
 ## Screenshots
 
