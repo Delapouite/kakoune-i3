@@ -37,7 +37,7 @@ A `i3` user-mode is also declared. With the mapping in the Install section above
 
 ## See also
 
-- [rc/extra/i3.kak](https://github.com/mawww/kakoune/blob/master/rc/extra/i3.kak) - config highlighters
+- [rc/filetype/i3.kak](https://github.com/mawww/kakoune/blob/master/rc/filetype/i3.kak) - config highlighters
 
 ## Licence
 
