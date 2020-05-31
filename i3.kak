@@ -16,7 +16,7 @@ define-command -hidden -params 1.. i3-new-impl %{
     kakoune_args="-e 'execute-keys $@ :buffer <space> %val{buffile} <ret> %val{cursor_line} g'"
     {
       # https://github.com/i3/i3/issues/1767
-      i3-msg "split $i3_split"
+      [ -n "$i3_split" ] && i3-msg "split $i3_split"
       exec $kak_opt_termcmd "kak -c $kak_session $kakoune_args"
     } < /dev/null > /dev/null 2>&1 &
   }
@@ -38,11 +38,16 @@ define-command i3-new-left -docstring "Create a new window on the left" %{
   i3-new-impl h :nop <space> '%sh{ i3-msg move left }' <ret>
 }
 
+define-command i3-new -docstring "Create a new window in the current container" %{
+  i3-new-impl ""
+}
+
 # Suggested aliases
 
-alias global new i3-new-right
+alias global new i3-new
 
 declare-user-mode i3
+map global i3 n :i3-new<ret> -docstring "new window in the current container"
 map global i3 h :i3-new-left<ret> -docstring '← new window on the left'
 map global i3 l :i3-new-right<ret> -docstring '→ new window on the right'
 map global i3 k :i3-new-up<ret> -docstring '↑ new window above'
