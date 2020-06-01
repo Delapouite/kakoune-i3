@@ -18,8 +18,9 @@ plug 'delapouite/kakoune-i3' %{
 
 ## Usage
 
-4 commands available:
+5 commands available:
 
+- `i3-new` new window in the current container
 - `i3-new-left` ← new window on the left
 - `i3-new-right` → new window on the right
 - `i3-new-up` ↑ new window above
