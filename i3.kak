@@ -7,7 +7,7 @@
 define-command -hidden -params 1.. i3-new-impl %{
   evaluate-commands %sh{
     if [ -z "$kak_opt_termcmd" ]; then
-      echo "echo -markup '{Error}termcmd option is not set'"
+      echo "fail 'termcmd option is not set'"
       exit
     fi
     i3_split="$1"
