@@ -13,7 +13,8 @@ define-command -hidden -params 1.. i3-new-impl %{
     i3_split="$1"
     shift
     # clone (same buffer, same line)
-    kakoune_args="-e 'execute-keys $@ :buffer <space> %val{buffile} <ret> %val{cursor_line} g'"
+    cursor="$kak_cursor_line.$kak_cursor_column"
+    kakoune_args="-e 'execute-keys $@ :buffer <space> $kak_buffile <ret> :select <space> $cursor,$cursor <ret>'"
     {
       # https://github.com/i3/i3/issues/1767
       [ -n "$i3_split" ] && i3-msg "split $i3_split"
