@@ -39,6 +39,7 @@ A `i3` user-mode is also declared. With the mapping in the Install section above
 ## See also
 
 - [rc/filetype/i3.kak](https://github.com/mawww/kakoune/blob/master/rc/filetype/i3.kak) - config highlighters
+- [kakoune-sway](https://github.com/mreppen/kakoune-sway) - support for https://swaywm.org/
 
 ## Licence
 
