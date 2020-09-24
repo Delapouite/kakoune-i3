@@ -17,9 +17,9 @@ define-command -hidden -params 1.. i3-new-impl %{
     kakoune_args="-e 'execute-keys $@ :buffer <space> $kak_buffile <ret> :select <space> $cursor,$cursor <ret>'"
     {
       # https://github.com/i3/i3/issues/1767
-      [ -n "$i3_split" ] && i3-msg "split $i3_split"
-      exec $kak_opt_termcmd "kak -c $kak_session $kakoune_args"
-    } < /dev/null > /dev/null 2>&1 &
+      [ -n "$i3_split" ] && i3-msg "split $i3_split" < /dev/null > /dev/null 2>&1 &
+      echo terminal "kak -c $kak_session $kakoune_args"
+    }
   }
 }
 
