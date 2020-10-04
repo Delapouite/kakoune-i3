@@ -1,19 +1,24 @@
 # kakoune-i3
 
-[kakoune](http://kakoune.org) plugin to create predictable clients with the [i3 window manager](http://i3wm.org/).
+[kakoune](https://kakoune.org) plugin to create predictable clients with the [i3 window manager](https://i3wm.org/).
 
 ## Install
 
 Add `i3.kak` to your autoload dir: `~/.config/kak/autoload/`.
-It depends on `x11.kak`.
 
 Or via [plug.kak](https://github.com/andreyorst/plug.kak):
 
 ```
 plug 'delapouite/kakoune-i3' %{
   # Suggested mapping
-  map global user 3 ': enter-user-mode i3<ret>' -docstring 'i3…'
+  map global user 3 ': enter-user-mode i3<ret>' -docstring 'i3 mode'
 }
+```
+
+As it depends on the `x11` module, add this line to your kakrc:
+
+```
+set-option global windowing_modules 'x11'
 ```
 
 ## Usage
@@ -28,9 +33,9 @@ plug 'delapouite/kakoune-i3' %{
 
 New windows display a *cloned view*: same buffer, same line.
 
-A `i3` user-mode is also declared. With the mapping in the Install section above:
+A `i3` user-mode is also declared. With the mapping in the _Install_ section above:
 
-`<space>3k` will open a new window above the current one.
+`,3k` will open a new window above the current one.
 
 ## Screenshots
 

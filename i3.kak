@@ -1,4 +1,4 @@
-# http://i3wm.org
+# https://i3wm.org
 # ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 # depends on: x11.kak
 # see also: tmux.kak
@@ -56,4 +56,4 @@ map global i3 j :i3-new-down<ret> -docstring '↓ new window below'
 
 # Suggested mapping
 
-#map global user 3 ': enter-user-mode i3<ret>' -docstring 'i3…'
+#map global user 3 ': enter-user-mode i3<ret>' -docstring 'i3 mode'
